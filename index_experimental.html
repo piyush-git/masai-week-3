@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chess</title>
+    <style>
+
+        body {
+            background: linear-gradient(135deg, rgb(60, 141, 65), grey 40%, rgb(15, 139, 133));
+        }
+        
+        #mainDiv {
+            width: 800px;
+            height: 1000px;
+            margin-left: 50px;
+        }
+
+        .blackTile {
+            background: black;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: 800px;
+            grid-template-rows: repeat(autofit, 1 90px 7);
+        }
+
+
+        /* #board div:nth-of-type(2n+1) {
+            background: rgb(34, 33, 33);
+        } */
+
+        #board > div {
+            border: 2px solid black;
+            border-radius: 8px;
+            box-shadow: 3px 3px 2px 3px;
+
+            display: grid;
+            grid-template-columns: repeat(autofit, 1 90px 8);
+            grid-template-rows: 90px;
+        }
+
+        /* #tile7 {
+            background: rgb(34, 33, 33);
+        }
+
+        #tile9 {
+            background: rgb(34, 33, 33);
+        } */
+
+        .clicked {
+            border: 5px;
+        }
+
+    </style>
+</head>
+<body >
+    <div id="mainDiv">
+        <div>
+            <div>
+
+            </div>
+        </div>
+
+        <div id="board">
+            <div id="row1">
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+            </div>
+
+            <div id="row2">
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+            </div>
+
+            <div id="row3">
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+            </div>
+
+            <div id="row4">
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+            </div>
+
+            <div id="row5">
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+            </div>
+
+            <div id="row6">
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+            </div>
+
+            <div id="row7">
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+            </div>
+
+            <div id="row8">
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+                <div id=""></div>
+            </div>
+
+
+            
+
+            <!-- <button id="tile0"></button>
+            <button id="tile1"></button>
+            <button id="tile2"></button>
+            <button id="tile3"></button>
+            <button id="tile4"></button>
+            <button id="tile5"></button>
+            <button id="tile6"></button>
+            <button id="tile7"></button>
+            <button id="tile8"></button>
+            <button id="tile9"></button>
+            <button id="tile10"></button>
+            <button id="tile11"></button>
+            <button id="tile12"></button>
+            <button id="tile13"></button>
+            <button id="tile14"></button>
+            <button id="tile15"></button>
+            <button id="tile16"></button>
+            <button id="tile17"></button>
+            <button id="tile18"></button>
+            <button id="tile19"></button>
+            <button id="tile20"></button>
+            <button id="tile21"></button>
+            <button id="tile22"></button>
+            <button id="tile23"></button>
+            <button id="tile24"></button>
+            <button id="tile25"></button>
+            <button id="tile26"></button>
+            <button id="tile27"></button>
+            <button id="tile28"></button>
+            <button id="tile29"></button>
+            <button id="tile30"></button>
+            <button id="tile31"></button>
+            <button id="tile32"></button>
+            <button id="tile33"></button>
+            <button id="tile34"></button>
+            <button id="tile35"></button>
+            <button id="tile36"></button>
+            <button id="tile37"></button>
+            <button id="tile38"></button>
+            <button id="tile39"></button>
+            <button id="tile40"></button>
+            <button id="tile41"></button>
+            <button id="tile42"></button>
+            <button id="tile43"></button>
+            <button id="tile44"></button>
+            <button id="tile45"></button>
+            <button id="tile46"></button>
+            <button id="tile47"></button>
+            <button id="tile48"></button>
+            <button id="tile49"></button>
+            <button id="tile50"></button>
+            <button id="tile51"></button>
+            <button id="tile52"></button>
+            <button id="tile53"></button>
+            <button id="tile54"></button>
+            <button id="tile55"></button>
+            <button id="tile56"></button>
+            <button id="tile57"></button>
+            <button id="tile58"></button>
+            <button id="tile59"></button>
+            <button id="tile60"></button>
+            <button id="tile61"></button>
+            <button id="tile62"></button>
+            <button id="tile63"></button> -->
+
+            <!-- <button id="reset">click for reset</button> -->
+
+        </div>
+    </div>
+
+    <script>
+
+        var board = document.getElementById('board');
+        var div = board.querySelectorAll('div');
+
+        // var reset = document.getElementById('reset');
+        // reset.addEventListener('click', blackRow);
+
+        function blackRow() {
+            blackRow1();
+            blackRow2();
+            blackRow3();
+            blackRow4();
+            blackRow5();
+            blackRow6();
+            blackRow7();
+            blackRow8();
+
+        }
+
+        function blackRow1() {
+            for (i = 0; i < 8; i++) {
+                if(i % 2 == 1) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow2() {
+            for (i = 8; i < 16; i++) {
+                if(i % 2 == 0) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow3() {
+            for (i = 16; i < 24; i++) {
+                if(i % 2 == 1) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow4() {
+            for (i = 24; i < 32; i++) {
+                if(i % 2 == 0) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow5() {
+            for (i = 32; i < 40; i++) {
+                if(i % 2 == 1) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow6() {
+            for (i = 40; i < 48; i++) {
+                if(i % 2 == 0) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow7() {
+            for (i = 48; i < 56; i++) {
+                if(i % 2 == 1) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow8() {
+            for (i = 56; i < 64; i++) {
+                if(i % 2 == 0) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

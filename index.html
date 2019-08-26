@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chess</title>
+    <style>
+
+        body {
+            background: linear-gradient(180deg, rgb(238, 247, 239), grey 50%, rgb(5, 10, 10));
+        }
+        
+        #mainDiv {
+            width: 800px;
+            height: 1000px;
+            margin-left: 50px;
+        }
+
+        .blackTile {
+            /* background: rgb(88, 48, 2); */
+            background: rgb(66, 65, 65);
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: 90px 90px 90px 90px 90px 90px 90px 90px;
+            grid-template-rows: 90px 90px 90px 90px 90px 90px 90px 90px;
+        }
+
+        /* #board div:nth-of-type(2n+1) {
+            background: rgb(34, 33, 33);
+        } */
+
+        #board div {
+            border: 2px solid black;
+            border-radius: 8px;
+            box-shadow: 3px 3px 2px 3px;
+        }
+
+        /* #tile7 {
+            background: rgb(34, 33, 33);
+        }
+
+        #tile9 {
+            background: rgb(34, 33, 33);
+        } */
+
+        .clicked {
+            border: 5px;
+        }
+
+        img {
+            height:80px;
+            margin-top: 9px;
+        }
+
+    </style>
+</head>
+<body onload="blackRow()">
+    <div id="mainDiv">
+        <div>
+            <div>
+
+            </div>
+        </div>
+
+        <div id="board">
+            <!-- row 1 -->
+            <div id="tile1"><img src="./resources/white/white_rook.png" /></div>
+            <div id="tile2"><img src="./resources/white/white_knight.png" /></div>
+            <div id="tile3"><img src="./resources/white/white_bishop.png" /></div>
+            <div id="tile4"><img src="./resources/white/white_queen.png" /></div>
+            <div id="tile5"><img src="./resources/white/white_king.png" /></div>
+            <div id="tile6"><img src="./resources/white/white_bishop.png" /></div>
+            <div id="tile7"><img src="./resources/white/white_knight.png" /></div>
+            <div id="tile8"><img src="./resources/white/white_rook.png" /></div>
+            <!-- row 2 -->
+            <div id="tile9"><img src="./resources/white/white_pawn.png" /></div>
+            <div id="tile10"><img src="./resources/white/white_pawn.png" /></div>
+            <div id="tile11"><img src="./resources/white/white_pawn.png" /></div>
+            <div id="tile12"><img src="./resources/white/white_pawn.png" /></div>
+            <div id="tile13"><img src="./resources/white/white_pawn.png" /></div>
+            <div id="tile14"><img src="./resources/white/white_pawn.png" /></div>
+            <div id="tile15"><img src="./resources/white/white_pawn.png" /></div>
+            <div id="tile16"><img src="./resources/white/white_pawn.png" /></div>
+            <!-- row 3 -->
+            <div id="tile17"></div>
+            <div id="tile18"></div>
+            <div id="tile19"></div>
+            <div id="tile20"></div>
+            <div id="tile21"></div>
+            <div id="tile22"></div>
+            <div id="tile23"></div>
+            <div id="tile24"></div>
+            <!-- row 4 -->
+            <div id="tile25"></div>
+            <div id="tile26"></div>
+            <div id="tile27"></div>
+            <div id="tile28"></div>
+            <div id="tile29"></div>
+            <div id="tile30"></div>
+            <div id="tile31"></div>
+            <div id="tile32"></div>
+            <!-- row 5 -->
+            <div id="tile33"></div>
+            <div id="tile34"></div>
+            <div id="tile35"></div>
+            <div id="tile36"></div>
+            <div id="tile37"></div>
+            <div id="tile38"></div>
+            <div id="tile39"></div>
+            <div id="tile40"></div>
+            <!-- row 6 -->
+            <div id="tile41"></div>
+            <div id="tile42"></div>
+            <div id="tile43"></div>
+            <div id="tile44"></div>
+            <div id="tile45"></div>
+            <div id="tile46"></div>
+            <div id="tile47"></div>
+            <div id="tile48"></div>
+            <!-- row 7 -->
+            <div id="tile49"><img src="./resources/black/black_pawn.png" /></div>
+            <div id="tile50"><img src="./resources/black/black_pawn.png" /></div>
+            <div id="tile51"><img src="./resources/black/black_pawn.png" /></div>
+            <div id="tile52"><img src="./resources/black/black_pawn.png" /></div>
+            <div id="tile53"><img src="./resources/black/black_pawn.png" /></div>
+            <div id="tile54"><img src="./resources/black/black_pawn.png" /></div>
+            <div id="tile55"><img src="./resources/black/black_pawn.png" /></div>
+            <div id="tile56"><img src="./resources/black/black_pawn.png" /></div>
+            <!-- row 8 -->
+            <div id="tile57"><img src="./resources/black/black_rook.png" /></div>
+            <div id="tile58"><img src="resources/black/black_knight.png" /></div>
+            <div id="tile59"><img src="./resources/black/black_bishop.png" /></div>
+            <div id="tile60"><img src="./resources/black/black_queen.png" /></div>
+            <div id="tile61"><img src="./resources/black/black_king.png" /></div>
+            <div id="tile62"><img src="./resources/black/black_bishop.png" /></div>
+            <div id="tile63"><img src="./resources/black/black_knight.png" /></div>
+            <div id="tile64"><img src="./resources/black/black_rook.png" /></div>
+            <!-- <div id="tile64" onclick="selectPiece()"><img src="./resources/black/black_rook.png" /></div> -->
+
+
+            <!-- <button id="reset">click for reset</button> -->
+
+        </div>
+    </div>
+
+    <script>
+
+        addEventListeners();
+
+        var board = document.getElementById('board');
+        var div = board.querySelectorAll('div');
+        
+
+        // var reset = document.getElementById('reset');
+        // reset.addEventListener('click', blackRow);
+
+        function blackRow() {
+            blackRow1();
+            blackRow2();
+            blackRow3();
+            blackRow4();
+            blackRow5();
+            blackRow6();
+            blackRow7();
+            blackRow8();
+        }
+
+        function blackRow1() {
+            for (i = 0; i < 8; i++) {
+                if(i % 2 == 1) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow2() {
+            for (i = 8; i < 16; i++) {
+                if(i % 2 == 0) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow3() {
+            for (i = 16; i < 24; i++) {
+                if(i % 2 == 1) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow4() {
+            for (i = 24; i < 32; i++) {
+                if(i % 2 == 0) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow5() {
+            for (i = 32; i < 40; i++) {
+                if(i % 2 == 1) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow6() {
+            for (i = 40; i < 48; i++) {
+                if(i % 2 == 0) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow7() {
+            for (i = 48; i < 56; i++) {
+                if(i % 2 == 1) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function blackRow8() {
+            for (i = 56; i < 64; i++) {
+                if(i % 2 == 0) {
+                    div[i].setAttribute('class', 'blackTile');
+                }
+            }
+        }
+
+        function addEventListeners() {
+            var board = document.getElementById('board');
+            var div = board.querySelectorAll('div');
+
+            for (i = 0; i < 64; i++) {
+                div[i].addEventListener('click', selectPiece);
+                // console.log(div[i]);
+            }
+        }
+
+
+        
+        var moveArray = [];
+
+        function selectPiece() {
+            // moveArray = document.getElementById('');
+            var idPiece = div.getAttribute('id');
+            console.log(div[i]);
+            console.log(idPiece);
+            
+        }
+
+        function movePiece() {
+            // tile to removeChild from
+            var pieceRemove = document.getElementById('tile64');
+            var img = pieceRemove.querySelector('img');
+            pieceRemove.removeChild(img);
+
+            //tile to appendChild to
+            var pieceAdd = document.getElementById('tile48');
+            pieceAdd.appendChild(img);
+
+        }
+
+
+
+    </script>
+</body>
+</html>
